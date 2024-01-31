@@ -1,13 +1,28 @@
 import { X } from "lucide-react";
 import React, { useState } from "react";
+import { useParams } from "react-router";
 
 export default function AddSocials({ isOpen, onClose }) {
-  const [profileurl, setProfileUrl] = useState("");
+  // const [profileurl, setProfileUrl] = useState("");
+  const { id } = useParams();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleClose = () => {
     onClose();
   };
 
+  async function addSocialAccount() {
+    ev.preventDefault();
+    const data = {
+      username,
+      password,
+    };
+
+    if (id) {
+      await axios.post("/integrations/add", data);
+    }
+  }
   //w-[780px] ml-[100px] -mt-[180px] fixed  h-[450px] border-[2px] border-[#dcdcdc] rounded-lg
 
   return (
@@ -25,26 +40,38 @@ export default function AddSocials({ isOpen, onClose }) {
             <X size={30} />
           </div>
 
-          <div className="w-[720px] h-[60px] pl-[25px] ml-[25px] mt-[50px]  border-[2px] border-solid border-[#DCDCDC] rounded-md flex">
-            <input
-              type="text"
-              placeholder="Enter your profile url"
-              className="w-full outline-none"
-              value={profileurl}
-              onChange={(ev) => setProfileUrl(ev.target.value)}
-            />
-          </div>
+          <form onSubmit={addSocialAccount}>
+            <div className="w-[720px] h-[60px] pl-[25px] ml-[25px] mt-[50px]  border-[2px] border-solid border-[#DCDCDC] rounded-md flex">
+              <input
+                type="text"
+                placeholder="Enter your username"
+                className="w-full outline-none"
+                value={username}
+                onChange={(ev) => setUsername(ev.target.value)}
+              />
+            </div>
 
-          <p className="w-[650px] h-[60px] mt-[15px] ml-[25px] text-left text-[#5F5F5F]">
-            Kindly include your essential social links to enhance your online
-            presence and connect with your audience more effectively.
-          </p>
+            <div className="w-[720px] h-[60px] pl-[25px] ml-[25px] mt-[10px] border-[2px] border-solid border-[#DCDCDC] rounded-md flex">
+              <input
+                type="text"
+                placeholder="Enter your password"
+                className="w-full outline-none"
+                value={password}
+                onChange={(ev) => setPassword(ev.target.value)}
+              />
+            </div>
 
-          <button className="bg-blue-700 w-[720px] h-[80px] ml-[25px] mt-[50px] rounded-md flex justify-center items-center">
-            <p className=" font-semibold text-white text-center text-2xl">
-              Done
+            <p className="w-[650px] h-[60px] mt-[15px] ml-[25px] text-left text-[#5F5F5F]">
+              Kindly include your essential social links to enhance your online
+              presence and connect with your audience more effectively.
             </p>
-          </button>
+
+            <button className="bg-blue-700 w-[720px] h-[80px] ml-[25px] mt-[50px] rounded-md flex justify-center items-center">
+              <p className=" font-semibold text-white text-center text-2xl">
+                Done
+              </p>
+            </button>
+          </form>
         </div>
       )}
     </>

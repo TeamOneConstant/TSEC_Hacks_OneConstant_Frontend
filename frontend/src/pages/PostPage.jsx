@@ -2,10 +2,21 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function PostPage() {
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(null);
 
   function handleChange(event) {
-    setFile(event.target.files[0]);
+    const selectedFile = setFile(event.target.files[0]);
+
+    if (selectedFile) {
+      const reader = new FileReader();
+      render.onloadend = () => {
+        setFile({
+          file: selectedFile,
+          previewUrl: reader.result,
+        });
+      };
+      reader.readAsDataURL(selectedFile);
+    }
   }
   return (
     <>
@@ -20,7 +31,7 @@ export default function PostPage() {
           <p className="w-[80px] h-[60px] mt-[4px] text-xl">Post Text</p>
           <button
             type="button"
-            class="text-white w-[150px] h-[40px] bg-gradient-to-r from-blue-700  to-purple-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium text-base rounded-lg  px-5 py-1.5 text-center me-2 mb-2"
+            className="text-white w-[150px] h-[40px] bg-gradient-to-r from-blue-700  to-purple-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium text-base rounded-lg  px-5 py-1.5 text-center me-2 mb-2"
           >
             Generative AI
           </button>
@@ -45,6 +56,17 @@ export default function PostPage() {
             Select File or drag and drop file
           </p>
         </div>
+
+        <div className="w-full h-[14px] " />
+        {file && (
+          <div className="w-[150px] h-[100px] border-2 border-[#5f5f5f] rounded-md ">
+            <img
+              src={file.previewUrl}
+              alt="preview"
+              className="w-full h-full object-contain"
+            />
+          </div>
+        )}
 
         <p className="w-[180px] h-[60px] mt-[8px] text-xl">Add post on</p>
       </div>
