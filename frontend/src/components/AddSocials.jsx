@@ -8,10 +8,12 @@ export default function AddSocials({ isOpen, onClose }) {
     onClose();
   };
 
+  //w-[780px] ml-[100px] -mt-[180px] fixed  h-[450px] border-[2px] border-[#dcdcdc] rounded-lg
+
   return (
     <>
       {isOpen && (
-        <div className="w-[780px] ml-[200px] h-[450px] border-[2px] border-[#dcdcdc] rounded-lg">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[780px] h-[460px] border-2 border-[#dcdcdc] rounded-lg bg-white z-50">
           <p className=" mt-[50px] ml-[30px] text-left text-2xl font-semibold">
             Enter URL
           </p>
