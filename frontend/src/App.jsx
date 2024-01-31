@@ -10,7 +10,7 @@ import IndexPage from "./pages/IndexPage";
 import OnBoardPage from "./pages/OnboardPage";
 import PostPage from "./pages/PostPage";
 
-axios.defaults.baseURL = "https://tsec-hacks.vercel.app/";
+axios.defaults.baseURL = "http://127.0.0.1:8000/";
 axios.defaults.withCredentials = true;
 
 function App() {
