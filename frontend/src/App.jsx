@@ -8,10 +8,9 @@ import SignupPage from "./pages/SignupPage";
 import "./App.css";
 import IndexPage from "./pages/IndexPage";
 import OnBoardPage from "./pages/OnboardPage";
-import AddSocials from "./components/AddSocials";
 import PostPage from "./pages/PostPage";
 
-axios.defaults.baseURL = "https://tsec-hacks.vercel.app/";
+axios.defaults.baseURL = "http://127.0.0.1:8000/";
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<IndexPage />} />
+          <Route index element={<OnBoardPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/onboard" element={<OnBoardPage />} />
           <Route path="/posts" element={<PostPage />} />

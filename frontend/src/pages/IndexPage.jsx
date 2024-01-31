@@ -1,27 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import SocialCard from "../components/SocialCard";
 import { AddPostOn } from "../components/AddPostOn";
-import { UndelieveredPosts } from "../components/UndelieveredPosts";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import request from "superagent";
 
 export default function IndexPage() {
-  return (
+    return (
     <div>
       
-      {/* <h1 className="text-blue-700">Index Page</h1>
+       <h1 className="text-blue-700">Index Page</h1>
       <p>This is the index page.</p>
-
-
-      <Link to={"/onboard"}>
-        <button>
-          <span>OnBoarding</span>
-
-        </button>
-
-      </Link>
-      <div style={{height: '50px'}}></div> */}
-
-<UndelieveredPosts SocialName="Instagram" SocialImage="/Instagram.png" />
-
     </div>
   );
 }

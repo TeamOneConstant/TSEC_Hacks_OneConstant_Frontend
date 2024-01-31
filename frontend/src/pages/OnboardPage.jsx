@@ -1,15 +1,82 @@
 import SocialCard from "../components/SocialCard";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Camera } from "lucide-react";
 import { Plus } from "lucide-react";
 import AddSocials from "../components/AddSocials";
+import axios from "axios";
+import json from "superagent/lib/node/parsers/json";
 
 {
   /* <SocialCard SocialIcon={Instagram} SocialName="Instagram" SocialImage={InstagramImg} onClick={() => {}}/> */
 }
 
 export default function OnBoardPage() {
+
+  // async function getPostUser() {
+  //   try {
+  //     const data = {
+  //       email: "abhishekkhandare8@gmail.com",
+  //       fname: "Abhishek Khandare",
+  //     };
+  //     const response = await axios.post(
+  //       "http://127.0.0.1:8000/api/accounts/login",
+  //       data,
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+
+  //     console.log(response);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+
+  // }
+
+  // useEffect(() => {
+  //   getPostUser();
+  // }, []);
+
+
+
+
+  fetch('https://tsec-hacks.vercel.app/api/accounts/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "email": "connect.siddhiraj@gmail.com",
+      "fname": "Siddhiraj R Kolwankar"
+    }
+    )
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Success:', data);
+
+      localStorage.setItem("authToken", data['authToken']['access'])
+      localStorage.setItem("userData", JSON.stringify(data['data']))
+
+      var t = JSON.parse(localStorage.getItem("userData"));
+      console.log(localStorage.getItem("authToken"))
+      console.log(t.email)
+
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle errors here
+    });
+
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -54,13 +121,13 @@ export default function OnBoardPage() {
       </p>
 
       <div className=" space-y-[6px]">
-        {socials.map((social) => {
+        {socials.map((social, index) => {
           return (
             <SocialCard
+              key={index}
               SocialIcon={social.SocialIcon}
               SocialName={social.SocialName}
               SocialImage={social.SocialImage}
-              // onClick={social.onClick}
             />
           );
         })}
