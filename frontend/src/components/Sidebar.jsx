@@ -60,7 +60,7 @@ const NavigationSidebar = () => {
           })}
         </div>
 
-        <div className="p-4 mt-auto flex items-center flex-col gap-y-4">
+        <div className="p-4 mt-[100px]  -ml-[150px] ">
           <UserButton
             afterSignOutUrl="/"
             appearance={{
