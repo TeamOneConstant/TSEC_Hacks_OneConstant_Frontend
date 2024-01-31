@@ -16,7 +16,7 @@ const sidebarItems = [
   {
     title: "Social Account",
     icon: <User2 size={30} />,
-    link: "/addaccount",
+    link: "/onboard",
   },
   {
     title: "Undelievered",

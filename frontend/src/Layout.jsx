@@ -5,11 +5,11 @@ import NavigationSidebar from "./components/Sidebar";
 const Layout = () => {
   return (
     <div className="h-full">
-      <div className=" md:flex h-full w-[260px]  z-30 flex-col fixed inset-y-0">
+      <div className=" flex h-full w-[260px]  z-30 flex-col fixed inset-y-0">
         <NavigationSidebar />
       </div>
 
-      <main className="  mt-[100px] ">
+      <main className=" overflow-y-auto flex-grow">
         <Outlet />
       </main>
     </div>
