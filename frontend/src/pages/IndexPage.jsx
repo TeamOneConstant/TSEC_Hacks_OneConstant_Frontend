@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import SocialCard from "../components/SocialCard";
+import { Instagram } from "lucide-react";
+import InstagramImg from "../assets/Instagram.png"
+import { AddPostOn } from "../components/AddPostOn";
 
 export default function IndexPage() {
   return (
@@ -10,6 +14,8 @@ export default function IndexPage() {
         <button>
           <span>OnBoarding</span>
         </button>
+        {/* <SocialCard SocialIcon={Instagram} SocialName="Instagram" SocialImage={InstagramImg} onClick={() => {}}/> */}
+        <AddPostOn />
       </Link>
     </div>
   );
