@@ -41,10 +41,10 @@ const NavigationSidebar = () => {
         </div>
 
         <div className="w-full space-y-[10px] text-[#5F5F5F]">
-          {sidebarItems.map((item) => {
+          {sidebarItems.map((item, index) => {
             return (
               <>
-                <Link to={item.link}>
+                <Link key={index} to={item.link}>
                   <div className="w-full h-[35px] gap-y-4  items-center rounded flex px-4 py-2 hover:bg-blue-200  hover:pl-[25px]">
                     <div className="w-[30px] h-[30px] opacity-80">
                       {item.icon}
@@ -62,7 +62,7 @@ const NavigationSidebar = () => {
 
         <div className="p-4 mt-auto flex items-center flex-col gap-y-4">
           <UserButton
-            afterSignOutUrl="/"
+            afterSignOutUrl="/signup"
             appearance={{
               elements: {
                 avatarBox: "h-[48px] w-[48px]",

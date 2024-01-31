@@ -54,13 +54,13 @@ export default function OnBoardPage() {
       </p>
 
       <div className=" space-y-[6px]">
-        {socials.map((social) => {
+        {socials.map((social, index) => {
           return (
             <SocialCard
+              key={index}
               SocialIcon={social.SocialIcon}
               SocialName={social.SocialName}
               SocialImage={social.SocialImage}
-              // onClick={social.onClick}
             />
           );
         })}
