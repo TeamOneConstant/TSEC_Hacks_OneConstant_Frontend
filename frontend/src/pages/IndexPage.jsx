@@ -9,14 +9,17 @@ export default function IndexPage() {
     <div>
       <h1 className="text-blue-700">Index Page</h1>
       <p>This is the index page.</p>
+      <AddPostOn SocialImage={InstagramImg} SocialName="Instagram" />
 
       <Link to={"/onboard"}>
-        <button>
+        {/* <button>
           <span>OnBoarding</span>
-        </button>
+        
+        </button> */}
         {/* <SocialCard SocialIcon={Instagram} SocialName="Instagram" SocialImage={InstagramImg} onClick={() => {}}/> */}
-        <AddPostOn />
+        
       </Link>
+      
     </div>
   );
 }
