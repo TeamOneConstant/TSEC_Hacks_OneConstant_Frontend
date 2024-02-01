@@ -13,36 +13,6 @@ import json from "superagent/lib/node/parsers/json";
 
 export default function OnBoardPage() {
 
-  // async function getPostUser() {
-  //   try {
-  //     const data = {
-  //       email: "abhishekkhandare8@gmail.com",
-  //       fname: "Abhishek Khandare",
-  //     };
-  //     const response = await axios.post(
-  //       "http://127.0.0.1:8000/api/accounts/login",
-  //       data,
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-
-  //     console.log(response);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-
-  // }
-
-  // useEffect(() => {
-  //   getPostUser();
-  // }, []);
-
-
-
-
   fetch('https://tsec-hacks.vercel.app/api/accounts/login', {
     method: 'POST',
     headers: {
@@ -65,10 +35,11 @@ export default function OnBoardPage() {
 
       localStorage.setItem("authToken", data['authToken']['access'])
       localStorage.setItem("userData", JSON.stringify(data['data']))
+      localStorage.setItem("socialConnects", JSON.stringify({ 'facebook': false, 'instagram': false, 'youtube': false}))
+      localStorage.setItem("socialUsername", JSON.stringify({ 'facebook': "", 'instagram': "", 'youtube': ""}))
 
-      var t = JSON.parse(localStorage.getItem("userData"));
-      console.log(localStorage.getItem("authToken"))
-      console.log(t.email)
+
+      
 
     })
     .catch(error => {
