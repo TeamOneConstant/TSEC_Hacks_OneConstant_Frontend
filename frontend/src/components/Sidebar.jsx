@@ -7,6 +7,7 @@ import {
   Pen,
   WalletCards,
   CreditCard,
+  X,
 } from "lucide-react";
 import { UserButton } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
@@ -30,7 +31,7 @@ const sidebarItems = [
   },
   {
     title: "Undelievered",
-    icon: <Cross size={30} />,
+    icon: <X size={30} />,
     link: "/outbox",
   },
   {

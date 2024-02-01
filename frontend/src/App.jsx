@@ -9,6 +9,7 @@ import "./App.css";
 import IndexPage from "./pages/IndexPage";
 import OnBoardPage from "./pages/OnboardPage";
 import PostPage from "./pages/PostPage";
+import DashboardPage from "./pages/DashboardPage";
 
 axios.defaults.baseURL = "http://127.0.0.1:8000/";
 axios.defaults.withCredentials = true;
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/onboard" element={<OnBoardPage />} />
           <Route path="/posts" element={<PostPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
 
           {/* <Route path="/addaccount" element={<AddSocials />} /> */}
         </Route>
