@@ -28,7 +28,7 @@ export default function AddSocials({ isOpen, onClose }) {
   return (
     <>
       {isOpen && (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[780px] h-[460px] border-2 border-[#dcdcdc] rounded-lg bg-white z-50">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[780px] h-[520px] border-2 border-[#dcdcdc] rounded-lg bg-white z-50">
           <p className=" mt-[50px] ml-[30px] text-left text-2xl font-semibold">
             Enter URL
           </p>
@@ -68,7 +68,7 @@ export default function AddSocials({ isOpen, onClose }) {
 
             <button className="bg-blue-700 w-[720px] h-[80px] ml-[25px] mt-[50px] rounded-md flex justify-center items-center">
               <p className=" font-semibold text-white text-center text-2xl">
-                Done
+                Connect Profile
               </p>
             </button>
           </form>

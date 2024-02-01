@@ -1,6 +1,16 @@
-import { Home, Edit, User2, LayoutDashboard, Cross, Pen } from "lucide-react";
+import {
+  Home,
+  Edit,
+  User2,
+  LayoutDashboard,
+  Cross,
+  Pen,
+  WalletCards,
+  CreditCard,
+} from "lucide-react";
 import { UserButton } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
+import { Profiler } from "react";
 
 const sidebarItems = [
   {
@@ -24,9 +34,9 @@ const sidebarItems = [
     link: "/outbox",
   },
   {
-    title: "Draft",
-    icon: <Pen size={30} />,
-    link: "/drafts",
+    title: "Profile",
+    icon: <CreditCard size={30} />,
+    link: "/profile",
   },
 ];
 
@@ -45,13 +55,15 @@ const NavigationSidebar = () => {
             return (
               <>
                 <Link key={index} to={item.link}>
-                  <div className="w-full h-[35px] gap-y-4  items-center rounded flex px-4 py-2 hover:bg-blue-200  hover:pl-[25px]">
-                    <div className="w-[30px] h-[30px] opacity-80">
-                      {item.icon}
-                    </div>
-                    <div className="h-full w-3" />
-                    <div className="h-full opacity-90 w-fit font-base text-xl">
-                      {item.title}
+                  <div className="w-full h-[35px] items-center space-y-[8px]   flex px-4 py-2 ">
+                    <div className=" w-[200px] h-[32px] hover:bg-blue-200/80  hover:pl-[25px] hover:rounded flex items-start justify-start">
+                      <div className="w-[30px] h-[30px] opacity-80">
+                        {item.icon}
+                      </div>
+                      <div className="h-full w-3" />
+                      <div className="h-full opacity-90 w-fit font-base text-xl">
+                        {item.title}
+                      </div>
                     </div>
                   </div>
                 </Link>

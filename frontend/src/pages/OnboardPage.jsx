@@ -12,70 +12,36 @@ import json from "superagent/lib/node/parsers/json";
 }
 
 export default function OnBoardPage() {
-
-  // async function getPostUser() {
-  //   try {
-  //     const data = {
-  //       email: "abhishekkhandare8@gmail.com",
-  //       fname: "Abhishek Khandare",
-  //     };
-  //     const response = await axios.post(
-  //       "http://127.0.0.1:8000/api/accounts/login",
-  //       data,
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-
-  //     console.log(response);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-
-  // }
-
-  // useEffect(() => {
-  //   getPostUser();
-  // }, []);
-
-
-
-
-  fetch('https://tsec-hacks.vercel.app/api/accounts/login', {
-    method: 'POST',
+  fetch("https://tsec-hacks.vercel.app/api/accounts/login", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      "email": "connect.siddhiraj@gmail.com",
-      "fname": "Siddhiraj R Kolwankar"
-    }
-    )
+      email: "connect.siddhiraj@gmail.com",
+      fname: "Siddhiraj R Kolwankar",
+    }),
   })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
       return response.json();
     })
-    .then(data => {
-      console.log('Success:', data);
+    .then((data) => {
+      console.log("Success:", data);
 
-      localStorage.setItem("authToken", data['authToken']['access'])
-      localStorage.setItem("userData", JSON.stringify(data['data']))
+      localStorage.setItem("authToken", data["authToken"]["access"]);
+      localStorage.setItem("userData", JSON.stringify(data["data"]));
 
       var t = JSON.parse(localStorage.getItem("userData"));
-      console.log(localStorage.getItem("authToken"))
-      console.log(t.email)
-
+      console.log(localStorage.getItem("authToken"));
+      console.log(t.email);
     })
-    .catch(error => {
-      console.error('Error:', error);
+    .catch((error) => {
+      console.error("Error:", error);
       // Handle errors here
     });
-
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
@@ -91,12 +57,6 @@ export default function OnBoardPage() {
 
   const socials = [
     {
-      SocialIcon: Instagram,
-      SocialName: "Instagram",
-      SocialImage: "/Instagram.png",
-      // onClick: onClick,
-    },
-    {
       SocialIcon: Facebook,
       SocialName: "Facebook",
       SocialImage: "/Facebook.png",
@@ -106,6 +66,12 @@ export default function OnBoardPage() {
       SocialIcon: Youtube,
       SocialName: "Youtube",
       SocialImage: "/Youtube.png",
+      // onClick: onClick,
+    },
+    {
+      SocialIcon: Instagram,
+      SocialName: "Instagram",
+      SocialImage: "/Instagram.png",
       // onClick: onClick,
     },
   ];

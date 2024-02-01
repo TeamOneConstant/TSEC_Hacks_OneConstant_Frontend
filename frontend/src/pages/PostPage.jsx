@@ -1,26 +1,41 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { AddPostOn } from "../components/AddPostOn";
 
 export default function PostPage() {
   const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+
+  const socials = [
+    {
+      SocialName: "Instagram",
+      SocialImage: "/Instagram.png",
+    },
+    {
+      SocialName: "Facebook",
+      SocialImage: "/Facebook.png",
+    },
+    // {
+    //   SocialName: "Youtube",
+    //   SocialImage: "/Youtube.png",
+    // },
+  ];
 
   function handleChange(event) {
-    const selectedFile = setFile(event.target.files[0]);
+    const selectedFile = event.target.files[0];
 
     if (selectedFile) {
       const reader = new FileReader();
-      render.onloadend = () => {
-        setFile({
-          file: selectedFile,
-          previewUrl: reader.result,
-        });
+      reader.onloadend = () => {
+        setFile(selectedFile);
+        setPreviewUrl(reader.result);
       };
       reader.readAsDataURL(selectedFile);
     }
   }
   return (
     <>
-      <div className="text-left ml-[180px] h-full ">
+      <div className="text-left ml-[180px] h-full overflow-y-hidden">
         <p className="w-[180px] h-[60px] font-semibold text-2xl">Send a post</p>
         <p className="w-[750px] h-[60px] text-left text-lg text-[#5f5f5f] ">
           Share your story with the world! Send a captivating post across all
@@ -59,9 +74,9 @@ export default function PostPage() {
 
         <div className="w-full h-[14px] " />
         {file && (
-          <div className="w-[150px] h-[100px] border-2 border-[#5f5f5f] rounded-md ">
+          <div className="w-[150px] h-[100px] border-2 border-[#5f5f5f] outline-none rounded-md ">
             <img
-              src={file.previewUrl}
+              src="/folder.png"
               alt="preview"
               className="w-full h-full object-contain"
             />
@@ -69,6 +84,22 @@ export default function PostPage() {
         )}
 
         <p className="w-[180px] h-[60px] mt-[8px] text-xl">Add post on</p>
+
+        <div className="w-[750px] h-[200px] justify-center items-center border-2 border-[#DCDCDC] rounded-md ">
+          {socials.map((social, index) => {
+            return (
+              <AddPostOn
+                key={index}
+                SocialName={social.SocialName}
+                SocialImage={social.SocialImage}
+              />
+            );
+          })}
+        </div>
+
+        <button className="bg-blue-700 w-[720px] h-[60px] ml-[20px] mt-[40px] rounded-md flex justify-center items-center">
+          <p className=" text-white text-center text-2xl">Post Now</p>
+        </button>
       </div>
     </>
   );
