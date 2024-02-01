@@ -12,8 +12,10 @@ import json from "superagent/lib/node/parsers/json";
 }
 
 export default function OnBoardPage() {
-  fetch("https://tsec-hacks.vercel.app/api/accounts/login", {
-    method: "POST",
+
+
+  fetch('https://tsec-hacks.vercel.app/api/accounts/login', {
+    method: 'POST',
     headers: {
       "Content-Type": "application/json",
     },
@@ -31,12 +33,14 @@ export default function OnBoardPage() {
     .then((data) => {
       console.log("Success:", data);
 
-      localStorage.setItem("authToken", data["authToken"]["access"]);
-      localStorage.setItem("userData", JSON.stringify(data["data"]));
+      localStorage.setItem("authToken", data['authToken']['access'])
+      localStorage.setItem("userData", JSON.stringify(data['data']))
+      localStorage.setItem("socialConnects", JSON.stringify({ 'facebook': false, 'instagram': false, 'youtube': false}))
+      localStorage.setItem("socialUsername", JSON.stringify({ 'facebook': "", 'instagram': "", 'youtube': ""}))
 
-      var t = JSON.parse(localStorage.getItem("userData"));
-      console.log(localStorage.getItem("authToken"));
-      console.log(t.email);
+
+      
+
     })
     .catch((error) => {
       console.error("Error:", error);

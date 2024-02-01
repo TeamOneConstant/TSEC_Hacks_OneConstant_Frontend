@@ -2,26 +2,54 @@ import { X } from "lucide-react";
 import React, { useState } from "react";
 import { useParams } from "react-router";
 
-export default function AddSocials({ isOpen, onClose }) {
+export default function AddSocials({ isOpen, onClose, calledBy }) {
   // const [profileurl, setProfileUrl] = useState("");
   const { id } = useParams();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [myObj, setMyObj] = useState("");
+
+  const cb = calledBy.toLowerCase();
 
   const handleClose = () => {
     onClose();
   };
 
-  async function addSocialAccount() {
+  async function addSocialAccount(ev) {
     ev.preventDefault();
-    const data = {
-      username,
-      password,
-    };
 
-    if (id) {
-      await axios.post("/integrations/add", data);
-    }
+    var token = localStorage.getItem("authToken");
+
+    fetch("https://tsec-hacks.vercel.app/api/integrations/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        platform: cb,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+        var sc = JSON.parse(localStorage.getItem("socialConnects"));
+        var su = JSON.parse(localStorage.getItem("socialUsername"));
+        sc[cb] = true;
+        su[cb] = username;
+        localStorage.setItem("socialConnects", JSON.stringify(sc));
+        localStorage.setItem("socialUsername", JSON.stringify(su));
+        handleClose();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        // Handle errors here
+      });
   }
   //w-[780px] ml-[100px] -mt-[180px] fixed  h-[450px] border-[2px] border-[#dcdcdc] rounded-lg
 
@@ -68,7 +96,7 @@ export default function AddSocials({ isOpen, onClose }) {
 
             <button className="bg-blue-700 w-[720px] h-[80px] ml-[25px] mt-[50px] rounded-md flex justify-center items-center">
               <p className=" font-semibold text-white text-center text-2xl">
-                Connect Profile
+                Connect profile
               </p>
             </button>
           </form>
